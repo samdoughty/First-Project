@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'project/css/bootstrap.min.css' %}" />
+    {% block references %}{% endblock %}
+    <title>{% block title %}{% endblock %} - Skydive Coaching</title>
+
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a>Skydive Coaching</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="{% url 'project:Home' %}">Home</a></li>
+					<li><a>Skills</a></li>
+					<li><a>Contact</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="{% url 'project:Login' %}">Login</a></li>
+					<li><a>Register</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="container">
+        {% block content %}{% endblock %}
+        <hr />
+        <footer>
+        	<p>&copy; Now - Sam Doughty</p>
+        </footer>
+    </div>
+</body>
+</html>
