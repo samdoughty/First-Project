@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% load staticfiles %}
+
+{% block references %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'project/css/register.css' %}" />
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<form action="{% url 'project:Register' %}" class="form-register" method="post">
+	{% csrf_token %}
+
+	<h2 class="form-register-header">Register</h2>
+	<input type="text" class="form-control" placeholder="Username" name="{{ form.username.html_name }}" autocomplete="off">
+	<input type="password" class="form-control" placeholder="Password" name="{{ form.password.html_name }}" autocomplete="off">
+	<input type="text" class="form-control" placeholder="First Name" name = "{{ form.firstname.html_name }}">
+	<input type="text" class="form-control" placeholder="Last Name" name = "{{ form.lastname.html_name }}">
+	<input type="email" class="form-control" placeholder="Email" name = "{{ form.email.html_name }}">
+	<input type="number" class="form-control" placeholder="Jump Number" name="{{ form.jumpnumber.html_name }}">
+	<button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+</form>
+
+{% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+    </div>
+{% endfor %}
+{{ form.non_field_errors }}
+{% endblock %}

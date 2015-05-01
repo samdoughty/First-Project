@@ -22,12 +22,20 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="{% url 'project:Home' %}">Home</a></li>
+					{% if user.username %}
+					<li><a href="{% url 'project:Jumps' %}">Jumps</a></li>
+					{% endif %}
 					<li><a>Skills</a></li>
 					<li><a>Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					{% if user.username %}
+					<li><a href="{% url 'project:UserProfile' user.userprofile.id %}">{{ user.username }}</a></li>
+					<li><a href="{% url 'project:Logout' %}">Logout</a></li>
+					{% else %}
 					<li><a href="{% url 'project:Login' %}">Login</a></li>
-					<li><a>Register</a></li>
+					<li><a href="{% url 'project:Register' %}">Register</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -36,8 +44,10 @@
         {% block content %}{% endblock %}
         <hr />
         <footer>
-        	<p>&copy; Now - Sam Doughty</p>
+        	<p>&copy; {% now "Y" %} - Sam Doughty</p>
         </footer>
     </div>
 </body>
+
+{% block jquery %}{% endblock %}
 </html>

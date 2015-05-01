@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Picture(models.Model):
@@ -53,8 +54,8 @@ class UserBookingEventProduct(models.Model):
 	ProductID = models.ForeignKey(Product)
 
 class UserProfile(models.Model):
-	FirstName = models.CharField(max_length=50)
-	LastName = models.CharField(max_length=50)
+	UserID = models.OneToOneField(User, unique=True)
+	JumpNumber = models.IntegerField()
 
 class UserBooking(models.Model):
 	EventProductID = models.ForeignKey(UserBookingEventProduct)
